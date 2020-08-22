@@ -48,6 +48,13 @@ pipeline {
             }
           }
         }
+        stage('Static Code Analysis - Security') {
+          steps {
+            container('docker-cmds') {
+               sh 'ls'
+            }
+          }
+        }
       }
     }
     stage('Package') {

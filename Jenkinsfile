@@ -7,10 +7,21 @@ pipeline {
     }
   }
   stages {
-    stage('Install Dependencies') {
-      steps {
-        container('docker-cmds') {
-          sh 'ls'
+    stage('Setup') {
+      parallel {
+        stage('Install Dependencies') {
+          steps {
+            container('docker-cmds') {
+              sh 'ls'
+            }
+          }
+        }
+        stage('Secrets scanner') {
+          steps {
+            container('docker-cmds') {
+              sh 'ls'
+            }
+          }
         }
       }
     }

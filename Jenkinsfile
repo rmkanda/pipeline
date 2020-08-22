@@ -32,10 +32,21 @@ pipeline {
         }
       }
     }
-    stage('Unit Tests') {
-      steps {
-        container('docker-cmds') {
-          sh 'ls'
+    stage('Static Analysis') {
+      parallel {
+        stage('Unit Tests') {
+          steps {
+            container('docker-cmds') {
+              sh 'ls'
+            }
+          }
+        }
+        stage('Dependency Checker') {
+          steps {
+            container('docker-cmds') {
+              sh 'ls'
+            }
+          }
         }
       }
     }

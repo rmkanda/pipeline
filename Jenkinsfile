@@ -7,53 +7,24 @@ pipeline {
     }
   }
   stages {
-    stage('Setup') {
-      parallel {
-        stage('Install Dependencies') {
-          steps {
-            container('docker-cmds') {
-              sh 'ls'
-            }
-          }
-        }
-        stage('Secrets scanner') {
-          steps {
-            container('docker-cmds') {
-              sh 'ls'
-            }
-          }
-        }
-      }
-    }
-    stage('Build') {
+    stage('Install Dependencies') {
       steps {
         container('docker-cmds') {
           sh 'ls'
         }
       }
     }
-    stage('Static Analysis') {
-      parallel {
-        stage('Unit Tests') {
-          steps {
-            container('docker-cmds') {
-              sh 'ls'
-            }
-          }
+    stage('Build Application') {
+      steps {
+        container('docker-cmds') {
+          sh 'ls'
         }
-        stage('Dependency Checker') {
-          steps {
-            container('docker-cmds') {
-              sh 'ls'
-            }
-          }
-        }
-        stage('Static Code Analysis - Security') {
-          steps {
-            container('docker-cmds') {
-               sh 'ls'
-            }
-          }
+      }
+    }
+    stage('Unit Test') {
+      steps {
+        container('docker-cmds') {
+          sh 'ls'
         }
       }
     }
@@ -64,7 +35,20 @@ pipeline {
         }
       }
     }
-    stage('Deploy') {
+    stage('Publish') {
+      steps {
+        container('docker-cmds') {
+          sh 'ls'
+        }
+      }
+    }
+    stage('Deploy to TEST env') {
+      steps {
+        // TODO
+        sh "echo done"
+      }
+    }
+    stage('Deploy to PROD env') {
       steps {
         // TODO
         sh "echo done"
